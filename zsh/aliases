@@ -1,0 +1,48 @@
+# aliases.sh
+# Author: Luke Berry <contact@luke-berry.co.uk>
+# Source:
+#
+# Git --------------------------------------------------------------------- {{{
+alias gc='git commit -v'
+alias git='hub'
+alias gs="git status -sb"
+alias gl="git log"
+alias gcom="git checkout master"
+alias gcod='git checkout develop'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gaa="git add ."
+alias gp="git push"
+alias nah="git reset --hard && git clean -df"
+alias hotfix='git flow hotfix'
+alias feature='git flow feature'
+alias release='git flow release'
+alias sync='git merge develop --no-ff'
+# }}}
+# Navigation -------------------------------------------------------------- {{{
+alias proj="cd ~/code"
+# }}}
+# MySQL/MaraiDB ----------------------------------------------------------- {{{
+alias mdb='mysql -uroot'
+# }}}
+# Helpers ----------------------------------------------------------------- {{{
+alias ref="source ~/.zshrc"
+alias aliases="vi ~/code/dotfiles/zsh/aliases.sh"
+alias vimconfig="vi ~/code/dotfiles/vim/vimrc"
+alias zshconfig="vi ~/code/dotfiles/zsh/zshrc"
+# }}}
+# Laravel ----------------------------------------------------------------- {{{
+alias art='php artisan'
+alias a='php artisan'
+alias tinker='php artisan tinker'
+alias phpunit='vendor/bin/phpunit '
+# }}}
+# Tmux -------------------------------------------------------------------- {{{
+alias tl="tmux list-sessions"
+alias ta="tmux attach -t "
+alias ts="tmux new-session -s "
+alias tk="tmux kill-session -t "
+# }}}
+# Applications ------------------------------------------------------------ {{{
+# }}}
+alias mc='gcloud compute --project "luke-187000" ssh --zone "europe-west1-b" "mc-server"'
