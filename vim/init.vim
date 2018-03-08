@@ -1,0 +1,1 @@
+/Users/luke/.config/nvim/vimrc

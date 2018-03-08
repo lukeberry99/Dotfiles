@@ -46,3 +46,4 @@ alias tk="tmux kill-session -t "
 # Applications ------------------------------------------------------------ {{{
 # }}}
 alias mc='gcloud compute --project "luke-187000" ssh --zone "europe-west1-b" "mc-server"'
+alias vim='nvim'

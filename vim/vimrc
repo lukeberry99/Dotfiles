@@ -10,7 +10,7 @@ endif
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "javascript,php"
-let g:vim_bootstrap_editor = "vim"                " nvim or vim
+let g:vim_bootstrap_editor = "nvim"                " nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -31,14 +31,17 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+Plug 'thaerkh/vim-workspace'
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'tpope/vim-dispatch'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
@@ -63,30 +66,26 @@ Plug 'Shougo/vimproc.vim', {'do': g:make}
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
 
 if v:version >= 703
   Plug 'Shougo/vimshell.vim'
 endif
 
-if v:version >= 704
-  "" Snippets
-  Plug 'SirVer/ultisnips'
-endif
+" if v:version >= 704
+"   "" Snippets
+"   Plug 'SirVer/ultisnips'
+" endif
 
 Plug 'honza/vim-snippets'
 
 "" Colorschemes
 Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
-Plug 'robertmeta/nofrils'
 Plug 'owickstrom/vim-colors-paramount'
 Plug 'dikiaap/minimalist'
 Plug 'Canop/patine'
 Plug 'ewilazarus/preto'
 Plug 'flazz/vim-colorschemes'
-
-"" Markdown
 
 "" Screensaver
 Plug 'itchyny/screensaver.vim'
@@ -97,11 +96,6 @@ Plug 'benmills/vimux'
 "" vim-test
 Plug 'janko-m/vim-test'
 
-""Notetaking
-Plug 'junegunn/goyo.vim'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-            \ 'syntax': 'markdown', 'ext': '.md'}]
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
@@ -110,19 +104,9 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 
-
 " php
 "" PHP Bundle
 Plug 'arnaud-lb/vim-php-namespace'
-
-
-"*****************************************************************************
-"*****************************************************************************
-
-"" Include user's extra bundle
-if filereadable(expand("~/.vimrc.local.bundles"))
-  source ~/.vimrc.local.bundles
-endif
 
 call plug#end()
 
@@ -175,10 +159,10 @@ else
 endif
 
 " session management
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
+" let g:session_directory = "~/.vim/session"
+" let g:session_autoload = "no"
+" let g:session_autosave = "yes"
+" let g:session_command_aliases = 1
 
 "*****************************************************************************
 "" Fold Method
@@ -195,7 +179,7 @@ nnoremap <Enter> za
 "*****************************************************************************
 syntax on
 set ruler
-set number
+set nonumber
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
@@ -204,13 +188,11 @@ if !exists('g:not_finish_vimplug')
  " colorscheme badwolf
 endif
 
+let g:airline_theme='serene'
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
 "" colorcolumn
 " let &colorcolumn="80,".join(range(120,999),",")
-
-"" nofrils
-let g:nofrils_heavylinenumbers=1
-let g:nofrils_strbackgrounds=1
-let g:nofrils_heavycomments=1
 
 set mousemodel=popup
 set t_Co=256
@@ -271,14 +253,6 @@ nnoremap N Nzzzv
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
-
-" vim-airline
-let g:airline_theme = 'nofrils-dark'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
 
 "*****************************************************************************
 "" Abbreviations
@@ -405,18 +379,17 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "" Date Insert
-inoremap <F5> -@lukeberry99 <C-R>=strftime("%c")<CR>
-inoremap <F5> -@lukeberry99 <C-R>=strftime("%c")<CR>
+inoremap <F5> <CR>=strftime("%G-%m-%d")<CR>
 
 "" Split
-set cc=80
-set fillchars+=vert:\ 
+" set cc=80
+set fillchars+=vert:\
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
 set splitbelow
 
-"" Git
+"" Gi
 noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gsh :Gpush<CR>
@@ -427,11 +400,15 @@ noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 noremap <Leader>go :Git checkout<Space>
 
+" workspace management
+nnoremap <leader>s :ToggleWorkspace<CR>
+let g:workspace_autosave_always = 1
+
 " session management
-nnoremap <leader>so :OpenSession<Space>
-nnoremap <leader>ss :SaveSession<Space>
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
+" nnoremap <leader>so :OpenSession<Space>
+" nnoremap <leader>ss :SaveSession<Space>
+" nnoremap <leader>sd :DeleteSession<CR>
+" nnoremap <leader>sc :CloseSession<CR>
 
 "" Tabs
 nnoremap <Tab> gt
@@ -537,6 +514,8 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
+tnoremap jj <C-\><C-n>
+
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
@@ -578,44 +557,3 @@ augroup END
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
-"*****************************************************************************
-"" Convenience variables
-"*****************************************************************************
-
-" vim-airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-if !exists('g:airline_powerline_fonts')
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline_left_sep          = '▶'
-  let g:airline_left_alt_sep      = '»'
-  let g:airline_right_sep         = '◀'
-  let g:airline_right_alt_sep     = '«'
-  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-  let g:airline#extensions#readonly#symbol   = '⊘'
-  let g:airline#extensions#linecolumn#prefix = '¶'
-  let g:airline#extensions#paste#symbol      = 'ρ'
-  let g:airline_symbols.linenr    = '␊'
-  let g:airline_symbols.branch    = '⎇'
-  let g:airline_symbols.paste     = 'ρ'
-  let g:airline_symbols.paste     = 'Þ'
-  let g:airline_symbols.paste     = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
-else
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#left_alt_sep = ''
-
-  " powerline symbols
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
-endif
-
