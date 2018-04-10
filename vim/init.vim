@@ -1,1 +1,1 @@
-/Users/luke/.config/nvim/vimrc
+/Users/luke/code/dotfiles/vim/vimrc

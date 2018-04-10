@@ -138,3 +138,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source $HOME/code/dotfiles/zsh/aliases
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
