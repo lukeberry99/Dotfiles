@@ -3,47 +3,45 @@
 # Source:
 #
 # Git --------------------------------------------------------------------- {{{
-alias gc='git commit -v'
-alias git='hub'
-alias gs="git status -sb"
-alias gl="git log"
-alias gcom="git checkout master"
-alias gcod='git checkout develop'
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gaa="git add ."
-alias gp="git push"
-alias nah="git reset --hard; git clean -df"
-alias hotfix='git flow hotfix'
-alias feature='git flow feature'
-alias release='git flow release'
-alias sync='git merge develop --no-ff'
-# }}}
+    alias gc='git commit -v'
+    alias git='hub'
+    alias gs="git status -sb"
+    alias gl="git log"
+    alias gcm="git checkout master"
+    alias gcd='git checkout develop'
+    alias gco='git checkout'
+    alias gcb='git checkout -b'
+    alias gaa="git add ."
+    alias gp="git push"
+    alias nah="git reset --hard; git clean -df"
+    alias hotfix='git flow hotfix'
+    alias feature='git flow feature'
+    alias release='git flow release'
+    alias sync='git merge develop --no-ff'
 # Navigation -------------------------------------------------------------- {{{
-alias proj="cd ~/code"
-# }}}
+    alias proj="cd ~/code"
 # MySQL/MaraiDB ----------------------------------------------------------- {{{
-alias mdb='mysql -uroot'
-# }}}
+    alias mdb='mysql -uroot'
 # Helpers ----------------------------------------------------------------- {{{
-alias ref="source ~/.zshrc"
-alias aliases="vi ~/code/dotfiles/zsh/aliases.sh"
-alias vimconfig="vi ~/code/dotfiles/vim/vimrc"
-alias zshconfig="vi ~/code/dotfiles/zsh/zshrc"
-# }}}
+    alias ref="source ~/.config/fish"
+    alias aliases="v ~/code/dotfiles/zsh/aliases.sh"
+    alias vimconfig="v ~/code/dotfiles/vim/vimrc"
+    alias zshconfig="v ~/code/dotfiles/zsh/zshrc"
+    alias d="./develop"
 # Laravel ----------------------------------------------------------------- {{{
-alias art='php artisan'
-alias a='php artisan'
-alias tinker='php artisan tinker'
-alias phpunit='vendor/bin/phpunit '
-# }}}
+    alias art='php artisan'
+    alias a='php artisan'
+    alias tinker='php artisan tinker'
+    alias phpunit='vendor/bin/phpunit '
 # Tmux -------------------------------------------------------------------- {{{
-alias tl="tmux list-sessions"
-alias ta="tmux attach -t "
-alias ts="tmux new-session -s "
-alias tk="tmux kill-session -t "
-# }}}
+    alias tl="tmux list-sessions"
+    alias ta="tmux attach -t "
+    alias ts="tmux new-session -s "
+    alias tk="tmux kill-session -t "
 # Applications ------------------------------------------------------------ {{{
-# }}}
-alias mc='gcloud compute --project "luke-187000" ssh --zone "europe-west1-b" "mc-server"'
-alias vim='nvim'
+    alias vim='nvim'
+    alias v='nvim'
+    alias vi='nvim'
+    alias mc='gcloud compute --project "luke-187000" ssh --zone "europe-west1-b" "mc-server"'
+    alias flushdns='sudo dscacheutil -flushcache'
+    alias vmux="abduco -l|grep nvim-session; rm -f /tmp/vim-server; abduco -e '^g' -A nvim-session nvim --cmd \"let g:server_addr = serverstart('/tmp/vim-server')\""
